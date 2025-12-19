@@ -2,6 +2,7 @@ from algorithms import bubbleSort
 from algorithms import insertionSort
 from algorithms import mergeSort
 from algorithms import selectionSort
+from algorithms import quickSort
 from utils import utils
 import sys
 
@@ -59,6 +60,15 @@ def main():
 
     sortedArray = randomValueArray.copy()
     timer.getTimerFunctionExecution(selectionSort.sort, sortedArray)
+
+    utils.printArray(sortedArray, True)
+
+    # QUICK
+    utils.printTitle("QUICK SORT")
+    utils.printArray(randomValueArray)
+
+    sortedArray = randomValueArray.copy()
+    timer.getTimerFunctionExecution(quickSort.sort, sortedArray)
 
     utils.printArray(sortedArray, True)
 
