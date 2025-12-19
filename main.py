@@ -3,6 +3,7 @@ from algorithms import insertionSort
 from algorithms import mergeSort
 from algorithms import selectionSort
 from algorithms import quickSort
+from tree import binaryTree
 from utils import utils
 import sys
 
@@ -71,6 +72,21 @@ def main():
     timer.getTimerFunctionExecution(quickSort.sort, sortedArray)
 
     utils.printArray(sortedArray, True)
+
+    # BINARY TREE
+    utils.printTitle("BINARY TREE")
+    utils.printArray(randomValueArray)
+    
+    sortedArray = randomValueArray.copy()
+
+    timer.setTimer()
+    root = binaryTree.BinaryTree(sortedArray[0])
+    root.insertArrayOfValue(sortedArray[1:])
+    timer.getTimer()
+
+    dataArrayTemp = []
+    binaryTree.BinaryTree.getSortedArray(root, dataArrayTemp)
+    utils.printArray(dataArrayTemp, True)
 
 if __name__ == '__main__':
     main()
