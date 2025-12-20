@@ -1,23 +1,37 @@
-from algorithms import bubbleSort
-from algorithms import insertionSort
-from algorithms import mergeSort
-from algorithms import selectionSort
-from algorithms import quickSort
+from sort import bubbleSort
+from sort import insertionSort
+from sort import mergeSort
+from sort import selectionSort
+from sort import quickSort
 from tree import binaryTree
+from search import binarySearch
+from backtracking import combinaison
 from utils import utils
 import sys
 
+# TYPLE CONST
+SORTED_ARRAY_CACHE = None 
+
 def main():
-    if len(sys.argv) < 2 or len(sys.argv) > 3:
+
+    '''
+        VALIDATION ARGS PROGRAM
+    '''
+    if (len(sys.argv) < 2 or len(sys.argv) > 3):
         print("Wrong command...\n\tpython3 main.py [ARRAY SIZE]\n\tpython3 main.py [ARRAY SIZE] [MAX INT]")
         sys.exit(0)
-
     if len(sys.argv) == 2:
         randomValueArray = utils.arrayGenerator(int(sys.argv[1]))
     else:
         randomValueArray = utils.arrayGenerator(int(sys.argv[1]), int(sys.argv[2]))
     timer = utils.Timer()
 
+
+
+    utils.SECTION = utils.Section.SORT.name
+    '''
+        SORT ALGORITHMS
+    '''
     # PYTHON SORT FUNCTION
     utils.printTitle("PYTHON SORT FUNCTION")
     utils.printArray(randomValueArray)
@@ -28,6 +42,7 @@ def main():
     timer.getTimer()
 
     utils.printArray(sortedArray, True)
+    SORTED_ARRAY_CACHE = (sortedArray)
 
     # BUBBLE
     utils.printTitle("BUBBLE SORT")
@@ -79,14 +94,46 @@ def main():
     
     sortedArray = randomValueArray.copy()
 
-    timer.setTimer()
-    root = binaryTree.BinaryTree(sortedArray[0])
-    root.insertArrayOfValue(sortedArray[1:])
-    timer.getTimer()
+    root = binaryTree.BinaryTree()
+    if (len(sortedArray) > 0):
+        timer.setTimer()
+        root = binaryTree.BinaryTree(sortedArray[0])
+        root.insertArrayOfValue(sortedArray[1:])
+        timer.getTimer()
 
     dataArrayTemp = []
-    binaryTree.BinaryTree.getSortedArray(root, dataArrayTemp)
+    binaryTree.BinaryTree.sort(root, dataArrayTemp)
     utils.printArray(dataArrayTemp, True)
+
+
+
+    utils.SECTION = utils.Section.SEARCH.name
+    '''
+        SEARCH
+    '''
+    # BINARY
+    utils.printTitle("BINARY SEARCH")
+    utils.printArray(SORTED_ARRAY_CACHE, True)
+
+    value = utils.randomValueInArray(SORTED_ARRAY_CACHE)
+    print(f"\nSEARCH: {value}")
+    timer.setTimer()
+    idFind = binarySearch.search(SORTED_ARRAY_CACHE, value)
+    timer.getTimer()
+
+    if idFind != None:
+        print(f"VALUE FIND: {SORTED_ARRAY_CACHE[idFind]} AT ID: {idFind}")
+
+
+
+    utils.SECTION = utils.Section.BACKTRACKING.name
+    '''
+        BACKTRACKING
+    '''
+    # COMBINAISON
+    utils.printTitle("COMBINAISON")
+    combinaison.combinaison("123")
+
 
 if __name__ == '__main__':
     main()

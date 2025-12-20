@@ -34,8 +34,8 @@ class BinaryTree():
         BinaryTree.printSort(node.left)
         print(node.data, end=' ')
         BinaryTree.printSort(node.right)
-    def getSortedArray(node, dataArray):
+    def sort(node, dataArray):
         if node == None: return
-        BinaryTree.getSortedArray(node.left, dataArray)
+        BinaryTree.sort(node.left, dataArray)
         dataArray.append(node.data)
-        BinaryTree.getSortedArray(node.right, dataArray)
+        BinaryTree.sort(node.right, dataArray)

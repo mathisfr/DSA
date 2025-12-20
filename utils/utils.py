@@ -1,12 +1,24 @@
 import time
 import random
+from enum import Enum
+
+class Section(Enum):
+    SORT = 0
+    SEARCH = 1
+    BACKTRACKING = 2
+
+SECTION = ""
 
 def arrayGenerator(size: int, maxInt: int = 100):
     return [random.randint(0, maxInt) for _ in range(size)]
 
+def randomValueInArray(dataArray):
+    if len(dataArray) <= 0: return 0
+    return dataArray[random.randint(0, len(dataArray) - 1)]
+
 def printTitle(title: str):
-    print('\n\n'+ ("-" * len(title)))
-    print(title)
+    print('\n\n'+ ("-" * (2*len('-> ') + len(title))))
+    print('[' + SECTION + ']\n-> ' + title + ' <-\n')
 
 def printArray(dataArray, sorted: bool = False):
     if sorted:
