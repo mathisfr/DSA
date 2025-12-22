@@ -3,9 +3,15 @@ from sort import insertionSort
 from sort import mergeSort
 from sort import selectionSort
 from sort import quickSort
-from tree import binaryTree
-from search import binarySearch
+
 from backtracking import combinaison
+
+from search import binarySearch
+from search import depthFirstSearch
+
+from tree import binaryTree
+from graph import graphList
+
 from utils import utils
 import sys
 
@@ -124,6 +130,23 @@ def main():
     if idFind != None:
         print(f"VALUE FIND: {SORTED_ARRAY_CACHE[idFind]} AT ID: {idFind}")
 
+    # DFB
+    utils.printTitle("DFB SEARCH")
+    gm = graphList.GraphList(
+        [0, 1, 2, 3, 4, 5, 6],
+        [
+            [1,2,3],
+            [0,2,4],
+            [6,0,1],
+            [0,2,6,5],
+            [1,5],
+            [4,3],
+            [3,2]
+        ]
+    )
+    #gm.debug()
+    if depthFirstSearch.search(gm, 6):
+        print(f"VALUE FIND")
 
 
     utils.SECTION = utils.Section.BACKTRACKING.name
@@ -133,6 +156,7 @@ def main():
     # COMBINAISON
     utils.printTitle("COMBINAISON")
     combinaison.combinaison("123")
+    
 
 
 if __name__ == '__main__':
