@@ -10,6 +10,8 @@ from search import binarySearch
 from search import depthFirstSearch
 from search import breadthFirstSearch
 
+from cache import lru
+
 from tree import binaryTree
 from graph import graphList
 
@@ -165,6 +167,30 @@ def main():
     utils.printTitle("COMBINAISON")
     combinaison.combinaison(BACKTRACKING_COMBINAISON)
     
+
+
+    utils.SECTION = utils.Section.CACHE.name
+    '''
+        CACHE
+    '''
+    # LRU
+    utils.printTitle("LRU")
+    cache = lru.Lru()
+    print(cache.cache)
+    print(f"Push A, B, and C")
+    cache.put("A", 42)
+    cache.put("B", 42)
+    cache.put("C", 42)
+    print(cache.cache)
+    print(f"Get A: {cache.get("A")}")
+    print(cache.cache)
+    print(f"Update B: 21")
+    cache.put("B", 21)
+    print(cache.cache)
+    print(f"Push D: 4")
+    cache.put("D", 42)
+    print(cache.cache)
+
 
 
 if __name__ == '__main__':

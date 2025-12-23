@@ -6,6 +6,7 @@ class Section(Enum):
     SORT = 0
     SEARCH = 1
     BACKTRACKING = 2
+    CACHE = 3
 
 SECTION = ""
 
