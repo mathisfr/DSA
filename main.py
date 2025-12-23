@@ -8,6 +8,7 @@ from backtracking import combinaison
 
 from search import binarySearch
 from search import depthFirstSearch
+from search import breadthFirstSearch
 
 from tree import binaryTree
 from graph import graphList
@@ -17,6 +18,8 @@ import sys
 
 # TYPLE CONST
 SORTED_ARRAY_CACHE = None 
+GRAPH_VALUE_TARGET = 6
+BACKTRACKING_COMBINAISON = "123"
 
 def main():
 
@@ -130,8 +133,7 @@ def main():
     if idFind != None:
         print(f"VALUE FIND: {SORTED_ARRAY_CACHE[idFind]} AT ID: {idFind}")
 
-    # DFB
-    utils.printTitle("DFB SEARCH")
+    # DFS & BFS
     gm = graphList.GraphList(
         [0, 1, 2, 3, 4, 5, 6],
         [
@@ -145,8 +147,14 @@ def main():
         ]
     )
     #gm.debug()
-    if depthFirstSearch.search(gm, 6):
-        print(f"VALUE FIND")
+    utils.printTitle("DFS SEARCH")
+    print(f"VALUE TARGET {GRAPH_VALUE_TARGET}")
+    if depthFirstSearch.search(gm, GRAPH_VALUE_TARGET):
+        print(f"VALUE FIND {GRAPH_VALUE_TARGET}")
+    utils.printTitle("BFS SEARCH")
+    print(f"VALUE TARGET {GRAPH_VALUE_TARGET}")
+    if breadthFirstSearch.search(gm, GRAPH_VALUE_TARGET):
+        print(f"VALUE FIND {GRAPH_VALUE_TARGET}")
 
 
     utils.SECTION = utils.Section.BACKTRACKING.name
@@ -155,7 +163,7 @@ def main():
     '''
     # COMBINAISON
     utils.printTitle("COMBINAISON")
-    combinaison.combinaison("123")
+    combinaison.combinaison(BACKTRACKING_COMBINAISON)
     
 
 
